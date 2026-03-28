@@ -11,7 +11,7 @@ const Home = () => {
         <h1 className='text-center mt-4 text-4xl'>Learn, Share and Grow with a community of creators</h1>
         <p className='text-center mt-5 text-2xl '>Join and explore courses created by real people</p>
         <div className='mt-8 flex gap-3 justify-center'>
-            <button className='bg-violet-900 text-white p-3 rounded'>Browse Courses</button>
+            <button  className='bg-violet-900 text-white p-3 rounded'>Browse Courses</button>
             <button className='bg-yellow-600 text-white p-3 rounded'>Get Started</button>
         </div>
     </section>
