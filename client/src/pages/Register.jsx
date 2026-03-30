@@ -12,19 +12,19 @@ const Register = () => {
         <form>
           <div className='mt-4'>
             <label htmlFor="Name">Name:</label>
-            <input type="text" className='w-full p-3 mt-4 border border-amber-700'/>
+            <input type="text" className='w-full p-3 mt-4 border border-amber-700' required/>
           </div>
           <div className='mt-4'>
             <label htmlFor="Email">Email:</label>
-            <input type="email" className='w-full p-3 mt-4 border border-amber-700' />
+            <input type="email" className='w-full p-3 mt-4 border border-amber-700' required/>
           </div>
           <div className='mt-4'>
             <label htmlFor="Password">Password:</label>
-            <input type="password" className='w-full p-3 mt-4 border border-amber-700' />
+            <input type="password" className='w-full p-3 mt-4 border border-amber-700' required/>
           </div>
           <div className='mt-4'>
             <label htmlFor="Bio">Bio:</label>
-            <textarea className='w-full border border-amber-700' maxLength={250}></textarea>
+            <textarea className='w-full border border-amber-700' maxLength={250} required></textarea>
           </div>
           <div className='mt-4'>
             <button type='submit' className='bg-amber-900 w-full p-3 text-white hover:bg-amber-600 cursor-pointer'>Click here to register</button>
