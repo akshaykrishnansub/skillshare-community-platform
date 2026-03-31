@@ -1,11 +1,21 @@
 import express from 'express'
+import path from 'path';
+import { fileURLToPath } from 'url';
+import authRoutes from './routes/authRoutes.js'
 import db from './config/db.js'
 const app=express();
 
+//recreate __dirname in ES modules
+const __filename=fileURLToPath(import.meta.url);
+const __dirname=path.dirname(__filename);
+
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.urlencoded({extended:true}));
+app.use(express.static(path.join(__dirname,'../../client/dist')));
 
 const port=process.env.PORT || 3000;
+
+app.use('/api',authRoutes);
 
 app.get("/",(req,res)=>{
     res.send("Server is running");
