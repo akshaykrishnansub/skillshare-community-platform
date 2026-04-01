@@ -47,8 +47,20 @@ const AuthProvider=({children})=>{
         }
     }
 
+    const logout=async()=>{
+        try{
+            await fetch('http://localhost:3000/api/logout',{
+            method:"POST",
+            credentials:"include"
+        })
+        setUser(null);
+    }catch(err){
+        console.error(err);
+    }
+}
+
     return (
-        <AuthContext.Provider value={{user,login,loading}}>
+        <AuthContext.Provider value={{user,login,loading,logout}}>
             {children}
         </AuthContext.Provider>
     )
