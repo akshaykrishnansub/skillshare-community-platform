@@ -45,7 +45,7 @@ const login=async(req,res)=>{
             secure:false,
             maxAge:1*24*60*60*1000
         })
-        return res.json({message:'Login Successful',token})
+        return res.json({message:'Login Successful',token,user:{id:user.id,name:user.name,email:user.email,bio:user.bio}});
     }catch(err){
         res.status(500).json({error:'Internal Server error'});
     }

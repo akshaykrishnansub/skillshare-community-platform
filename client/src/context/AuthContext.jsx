@@ -39,7 +39,8 @@ const AuthProvider=({children})=>{
             if(!res.ok){
                 throw new Error(data.error);
             }
-            setUser({email});
+            setUser(data.user);
+            console.log("Login Response:",data.user)
             return true;
         }catch(err){
             console.error(err.message);

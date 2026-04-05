@@ -2,6 +2,7 @@ import express from 'express'
 import path from 'path';
 import { fileURLToPath } from 'url';
 import authRoutes from './routes/authRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 import db from './config/db.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
@@ -25,6 +26,7 @@ app.use(cookieParser());
 const port=process.env.PORT || 3000;
 
 app.use('/api',authRoutes);
+app.use("/api",userRoutes);
 
 app.get("/",(req,res)=>{
     res.send("Server is running");
