@@ -1,9 +1,10 @@
 import {Router} from 'express';
-import {getProfile} from '../controllers/userController.js'
+import {getProfile,updateProfile} from '../controllers/userController.js'
 import verifyToken from '../middleware/authMiddleware.js'
 
 const router=Router();
 
 router.get("/profile",verifyToken,getProfile);
+router.put("/profile",verifyToken,updateProfile);
 
 export default router;

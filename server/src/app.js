@@ -32,10 +32,6 @@ app.get("/",(req,res)=>{
     res.send("Server is running");
 })
 
-app.get(/.*/,(req,res)=>{
-    res.sendFile(path.join(__dirname,"../../client/dist/index.html"))
-})
-
 app.get("/test-db",(req,res)=>{
     db.query('SELECT 1',(err,result)=>{
         if(err){
@@ -45,6 +41,11 @@ app.get("/test-db",(req,res)=>{
         }
     })
 })
+
+app.get(/.*/,(req,res)=>{
+    res.sendFile(path.join(__dirname,"../../client/dist/index.html"))
+})
+
 app.listen(port,()=>{
     console.log(`Server running at port ${port}`)
 });

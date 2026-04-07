@@ -5,4 +5,10 @@ const getUserById=async(id)=>{
     return result[0];
 }
 
-export {getUserById};
+const updateUserProfile=async(name,bio,id)=>{
+    await db.query('UPDATE users SET name=?,bio=? WHERE id=?',[name,bio,id]);
+    const [rows]=await db.query('SELECT id,name,email,bio from users WHERE id=?',[id]);
+    return rows[0];
+}
+
+export {getUserById,updateUserProfile};
