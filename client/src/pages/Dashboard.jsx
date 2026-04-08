@@ -28,7 +28,7 @@ const Dashboard = () => {
       </aside>
       <main className='flex-1'>
         <div className='flex items-center justify-center'>
-          <button className='p-2 text-white bg-blue-950 hover:bg-blue-800 mt-4'>+ Create a Course</button>
+          <button className='p-2 text-white bg-blue-950 hover:bg-blue-800 mt-4 cursor-pointer' onClick={()=>navigate("/create-course")}>+ Create a Course</button>
         </div>
       </main>
     </div>

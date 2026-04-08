@@ -10,6 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import Profile from './pages/Profile.jsx'
+import CreateCourse from './pages/CreateCourse.jsx'
 const router=createBrowserRouter([
   {
     path:"/",element:<App />,
@@ -25,6 +26,11 @@ const router=createBrowserRouter([
       {path:"/profile",element:(
         <ProtectedRoute>
           <Profile />
+        </ProtectedRoute>
+      )},
+      {path:"/create-course",element:(
+        <ProtectedRoute>
+          <CreateCourse />
         </ProtectedRoute>
       )}
     ]
