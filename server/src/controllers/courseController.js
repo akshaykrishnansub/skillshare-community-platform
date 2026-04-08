@@ -1,4 +1,4 @@
-import { insertCourse } from "../models/courseModel.js";
+import { insertCourse,getAllCourses } from "../models/courseModel.js";
 
 const createCourse=async(req,res)=>{
     try{
@@ -23,4 +23,18 @@ const createCourse=async(req,res)=>{
     }
 }
 
-export default createCourse;
+const listCourses=async(req,res)=>{
+     try{
+        const courses=await getAllCourses();
+        res.status(200).json({
+            message:'Course fetched successfully',
+            courses
+        })
+     }catch(err){
+        console.error(err);
+        res.status(500).json({error:'Internal server error'});
+     }
+}
+
+
+export {createCourse,listCourses};

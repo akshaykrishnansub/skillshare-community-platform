@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import Profile from './pages/Profile.jsx'
 import CreateCourse from './pages/CreateCourse.jsx'
+import AllCourses from './pages/AllCourses.jsx'
 const router=createBrowserRouter([
   {
     path:"/",element:<App />,
@@ -32,6 +33,9 @@ const router=createBrowserRouter([
         <ProtectedRoute>
           <CreateCourse />
         </ProtectedRoute>
+      )},
+      {path:"/all-courses",element:(
+        <AllCourses />
       )}
     ]
   }

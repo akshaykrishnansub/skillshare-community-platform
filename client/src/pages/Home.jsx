@@ -1,8 +1,10 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+    const navigate=useNavigate();
   return (
     <>
     <title>SkillShare- A Community learning platform</title>
@@ -11,8 +13,8 @@ const Home = () => {
         <h1 className='text-center mt-4 text-4xl'>Learn, Share and Grow with a community of creators</h1>
         <p className='text-center mt-5 text-2xl '>Join and explore courses created by real people</p>
         <div className='mt-8 flex gap-3 justify-center'>
-            <button  className='bg-violet-900 text-white p-3 rounded'>Browse Courses</button>
-            <button className='bg-yellow-600 text-white p-3 rounded'>Get Started</button>
+            <button  className='bg-violet-900 text-white p-3 rounded hover:bg-violet-700 cursor-pointer' onClick={()=>navigate("/all-courses")}>Browse Courses</button>
+            <button className='bg-yellow-600 text-white p-3 rounded hover:bg-yellow-500 cursor-pointer' onClick={()=>navigate("/register")}>Get Started</button>
         </div>
     </section>
     <section className='bg-violet-900 p-4 mt-5'>

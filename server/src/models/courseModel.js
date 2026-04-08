@@ -5,4 +5,9 @@ const insertCourse=async(title,description,content,creatorId)=>{
     return result;
 }
 
-export {insertCourse};
+const getAllCourses=async()=>{
+    const [result]=await db.query('SELECT c.id,c.title,c.description,u.name AS instructor from courses c INNER JOIN users u ON c.creator_id=u.id')
+    return result;
+}
+
+export {insertCourse,getAllCourses};
