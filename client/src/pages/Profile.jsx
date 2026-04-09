@@ -73,13 +73,22 @@ const Profile = () => {
     }
     />
 
-    <div className='mt-4 px-2'><h1 className='text-3xl font-extrabold'>Profile Information:</h1></div>
+    <div className='mt-4 px-4'><h1 className='text-3xl font-extrabold'>Profile Information:</h1></div>
     {!editMode ?(
       <>
       {/*VIEW MODE*/}
-      <div className='flex mt-4 px-2 gap-2 text-2xl'><p className='font-bold'>Name:</p>{profile.name}</div>
-      <div className='flex mt-4 px-2 gap-2 text-2xl'><p className='font-bold'>Email:</p>{profile.email}</div>
-      <div className='flex mt-4 px-2 gap-2 text-2xl'><p className='font-bold'>About me:</p>{profile.bio}</div>
+      <div className='mt-4 px-4'>
+        <h1 className='text-3xl font-bold'>Name:{" "}</h1>
+        <p className='text-2xl'>{profile.name}</p>
+      </div>
+      <div className='mt-4 px-4'>
+        <h1 className='text-3xl font-bold'>Email:{" "}</h1>
+        <p className='text-2xl'>{profile.email}</p>
+      </div>
+      <div className='mt-4 px-4'>
+        <h1 className='text-3xl font-bold'>About me:</h1>
+        <p className='text-2xl'>{profile.bio}</p>
+      </div>
       <div className='flex mt-8 px-2 gap-3'>
         <Link to='/dashboard' className='text-white bg-black p-2'><p>Go back to dashboard</p></Link>
         <button className='bg-purple-700 p-2 text-white cursor-pointer' onClick={()=>setEditMode(true)}>Edit Profile</button>
@@ -89,21 +98,21 @@ const Profile = () => {
       <>
       {/*EDIT MODE */}
       <form>
-        <div className='flex mt-4 px-2 gap-2 text-2xl'>
-          <p className='font-bold'>Name:</p>
-          <input className='border p-2'
+        <div className='mt-4 px-4'>
+          <h1 className='text-3xl font-bold'>Name:</h1>
+          <input className='text-2xl border p-2'
           value={name}
           onChange={(e)=>setName(e.target.value)}
           />
         </div>
-        <div className='flex mt-4 px-2 gap-2 text-2xl'>
-          <p className='font-bold'>About Me:</p>
-          <textarea className='border p-2 w-full'
+        <div className='mt-4 px-4'>
+          <p className='text-3xl font-bold'>About Me:</p>
+          <textarea className='text-2xl border p-2 w-full'
           value={bio}
           onChange={(e)=>setBio(e.target.value)}
           />
         </div>
-        <div className='flex mt-8 px-2 gap-2'>
+        <div className='flex mt-8 px-4 gap-2'>
           <button className='bg-green-800 text-white p-2' onClick={handleUpdate}>Save Updates</button>
           <button className='bg-red-800 text-white p-2' onClick={()=>setEditMode(false)}>Cancel</button>
         </div>
