@@ -34,6 +34,7 @@ const CourseDetails = () => {
   return (
     <>
     <Navbar />
+    <title>{courseDetail.title}</title>
     <div className='mt-4 p-4'>
         <h2 className='text-2xl font-bold'>Title:{" "}</h2><p className='text-2xl'>{courseDetail.title}</p>
     </div>

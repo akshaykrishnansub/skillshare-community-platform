@@ -1,4 +1,4 @@
-import { insertCourse,getAllCourses, getCourseById,getCourseByCreator } from "../models/courseModel.js";
+import { insertCourse,getAllCourses, getCourseById,getCourseByCreator, getCourseContent } from "../models/courseModel.js";
 
 const createCourse=async(req,res)=>{
     try{
@@ -64,4 +64,29 @@ const getMyCreatedCourses=async(req,res)=>{
     }
 }
 
-export {createCourse,listCourses,getCourse,getMyCreatedCourses};
+const getCourseContentController=async(req,res)=>{
+    try{
+        const id=req.params.id;
+
+        if(!req.user){
+            return res.status(401).json({message:'You must be logged in to view this course'});
+        }
+
+        const courseContent=await getCourseContent(id);
+
+        if(!courseContent){
+            return res.status(404).json({error:'Course not found'});
+        }
+
+        return res.status(200).json({
+            message:'Course content fetched successfully',
+            courseContent
+        })
+
+    }catch(err){
+        console.error(err);
+        res.status(500).json({error:'Internal Server error'});
+    }
+}
+
+export {createCourse,listCourses,getCourse,getMyCreatedCourses,getCourseContentController};

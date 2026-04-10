@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../components/Navbar.jsx'
 import { AuthContext } from '../context/AuthContext.jsx'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Profile = () => {
-
+  
+  const navigate=useNavigate();
   const {logout,setUser}=useContext(AuthContext);
   const [editMode,setEditMode]=useState(false);
   const [profile,setProfile]=useState(null);
@@ -12,6 +13,9 @@ const Profile = () => {
   const [bio,setBio]=useState("");
 
   const [courses,setCourses]=useState([]);
+  const openMyCourse=(id)=>{
+    navigate(`/courses/my-courses/${id}`)
+  }
 
   useEffect(()=>{
     const fetchProfile=async()=>{
@@ -156,10 +160,8 @@ const Profile = () => {
           >
             <h3 className='text-3xl font-semibold'>Course Name:{" "}</h3><p className='text-2xl'>{course.title}</p>
             <h3 className='text-3xl font-semibold'>Instructor:{" "}</h3><p className='text-2xl'>{course.instructor}</p>
-            <div className='mt-4 flex gap-2'>
-              <button className='p-2 text-white bg-amber-800 rounded hover:bg-amber-700 cursor-pointer'>View Content</button>
-              <button className='p-2 text-white bg-green-900 rounded hover:bg-green-800 cursor-pointer'>Edit Content</button>
-            </div>
+            <div className='mt-4 flex gap-2 justify-center'>
+              <button className='p-2 text-white bg-amber-800 rounded hover:bg-amber-700 cursor-pointer' onClick={()=>openMyCourse(course.id)}>View Content</button>            </div>
           </div>
         )
         )}

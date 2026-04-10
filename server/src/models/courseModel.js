@@ -20,4 +20,9 @@ const getCourseByCreator=async(userId)=>{
     return result;
 }
 
-export {insertCourse,getAllCourses,getCourseById,getCourseByCreator};
+const getCourseContent=async(courseId)=>{
+    const [result]=await db.query('SELECT c.id,c.title,c.description,c.content,u.name AS instructor from courses c INNER JOIN users u ON c.creator_id=u.id WHERE c.id=?',[courseId]);
+    return result;
+}
+
+export {insertCourse,getAllCourses,getCourseById,getCourseByCreator,getCourseContent};

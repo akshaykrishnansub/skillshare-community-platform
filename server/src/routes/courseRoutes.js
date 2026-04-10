@@ -1,12 +1,13 @@
 import Router from 'express';
 import verifyToken from '../middleware/authMiddleware.js';
-import {createCourse,getCourse,getMyCreatedCourses,listCourses} from '../controllers/courseController.js'
+import {createCourse,getCourse,getCourseContentController,getMyCreatedCourses,listCourses} from '../controllers/courseController.js'
 
 const router=Router();
 
 router.post("/",verifyToken,createCourse);
 router.get("/",listCourses);
-router.get("/my-courses",verifyToken,getMyCreatedCourses)
-router.get("/:id",getCourse)
+router.get("/my-courses",verifyToken,getMyCreatedCourses);
+router.get("/my-courses/:id",verifyToken,getCourseContentController);
+router.get("/:id",getCourse);
 
 export default router;

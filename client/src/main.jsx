@@ -13,6 +13,7 @@ import Profile from './pages/Profile.jsx'
 import CreateCourse from './pages/CreateCourse.jsx'
 import AllCourses from './pages/AllCourses.jsx'
 import CourseDetails from './pages/CourseDetails.jsx'
+import CourseContent from './pages/CourseContent.jsx'
 const router=createBrowserRouter([
   {
     path:"/",element:<App />,
@@ -40,6 +41,11 @@ const router=createBrowserRouter([
       )},
       {path:"/courses/:id",element:(
         <CourseDetails />
+      )},
+      {path:"/courses/my-courses/:id",element:(
+        <ProtectedRoute>
+          <CourseContent />
+        </ProtectedRoute>
       )}
     ]
   }
