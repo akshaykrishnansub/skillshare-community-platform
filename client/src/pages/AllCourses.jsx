@@ -26,6 +26,7 @@ const AllCourses = () => {
     }
     fetchCourses();
   },[])
+
   return (
     <>
     <title>SkillShare | All Courses</title>

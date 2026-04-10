@@ -1,4 +1,4 @@
-import { insertCourse,getAllCourses, getCourseById } from "../models/courseModel.js";
+import { insertCourse,getAllCourses, getCourseById,getCourseByCreator } from "../models/courseModel.js";
 
 const createCourse=async(req,res)=>{
     try{
@@ -53,5 +53,15 @@ const getCourse=async(req,res)=>{
     }
 }
 
+const getMyCreatedCourses=async(req,res)=>{
+    try{
+        const userId=req.user.id;
+        const courses=await getCourseByCreator(userId);
+        res.json({courses});
+    }catch(err){
+        console.error(err);
+        res.status(500).json({error:"Internal Server Error"});
+    }
+}
 
-export {createCourse,listCourses,getCourse};
+export {createCourse,listCourses,getCourse,getMyCreatedCourses};

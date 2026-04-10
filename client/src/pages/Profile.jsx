@@ -11,6 +11,8 @@ const Profile = () => {
   const [name,setName]=useState("");
   const [bio,setBio]=useState("");
 
+  const [courses,setCourses]=useState([]);
+
   useEffect(()=>{
     const fetchProfile=async()=>{
       const res=await fetch("http://localhost:3000/api/profile",{
@@ -26,6 +28,25 @@ const Profile = () => {
     }
     fetchProfile();
   },[]);
+
+  useEffect(()=>{
+    const fetchMyCourses=async()=>{
+      try{
+        const res=await fetch("http://localhost:3000/api/courses/my-courses",{
+          credentials:'include'
+        })
+        const data=await res.json();
+        if(res.ok){
+          setCourses(data.courses);
+        }
+        
+      }catch(err){
+        console.error(err);
+      }
+    }
+    fetchMyCourses();
+  },[]);
+
 
   const handleUpdate=async(event)=>{
     event.preventDefault();
@@ -118,6 +139,31 @@ const Profile = () => {
         </div>
       </form>
       </>
+    )}
+    <div className='mt-8'>
+      <h1 className='text-center text-3xl font-extrabold'>My Created Courses</h1>
+    </div>
+    {courses.length===0?(
+      <div className='mt-4'>
+        <p className='text-2xl text-center'>You have not created any courses yet.</p>
+      </div>
+    ):(
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-4 gap-1.5 mb-6'>
+        {courses.map((course)=>(
+          <div
+          key={course.id}
+          className='border p-4 rounded shadow hover:shadow-lg transition cursor-pointer'
+          >
+            <h3 className='text-3xl font-semibold'>Course Name:{" "}</h3><p className='text-2xl'>{course.title}</p>
+            <h3 className='text-3xl font-semibold'>Instructor:{" "}</h3><p className='text-2xl'>{course.instructor}</p>
+            <div className='mt-4 flex gap-2'>
+              <button className='p-2 text-white bg-amber-800 rounded hover:bg-amber-700 cursor-pointer'>View Content</button>
+              <button className='p-2 text-white bg-green-900 rounded hover:bg-green-800 cursor-pointer'>Edit Content</button>
+            </div>
+          </div>
+        )
+        )}
+      </div>
     )}
     </>
   )
