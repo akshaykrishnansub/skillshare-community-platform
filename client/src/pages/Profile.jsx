@@ -86,6 +86,27 @@ const Profile = () => {
 
   if(!profile)
     return <p>Loading...</p>
+
+  const handleCourseDeletion=async(id)=>{
+    const deleteConfirmation=window.confirm("Are you sure you want to delete this course??");
+    if(!deleteConfirmation){
+      return;
+    }
+    try{
+      const res=await fetch(`http://localhost:3000/api/courses/${id}`,{
+        method:"DELETE",
+        credentials:"include"
+      })
+      const data=await res.json();
+      if(res.ok){
+        setCourses((prev)=>prev.filter((c)=>c.id!==id));
+        console.log("Course deleted successfully");
+      }
+      console.log(data.error);
+    }catch(err){
+      console.error(err);
+    }
+  }
   
   return (
     <>
@@ -161,7 +182,9 @@ const Profile = () => {
             <h3 className='text-3xl font-semibold'>Course Name:{" "}</h3><p className='text-2xl'>{course.title}</p>
             <h3 className='text-3xl font-semibold'>Instructor:{" "}</h3><p className='text-2xl'>{course.instructor}</p>
             <div className='mt-4 flex gap-2 justify-center'>
-              <button className='p-2 text-white bg-amber-800 rounded hover:bg-amber-700 cursor-pointer' onClick={()=>openMyCourse(course.id)}>View Content</button>            </div>
+              <button className='p-2 text-white bg-amber-800 rounded hover:bg-amber-700 cursor-pointer' onClick={()=>openMyCourse(course.id)}>View Content</button>
+              <button className='p-2 text-white bg-red-950 rounded hover:bg-red-900 cursor-pointer' onClick={()=>handleCourseDeletion(course.id)}>Delete Course</button>
+            </div>
           </div>
         )
         )}

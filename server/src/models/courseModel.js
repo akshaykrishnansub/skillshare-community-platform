@@ -34,4 +34,9 @@ const updateCourse=async(id,title,description,content,userId)=>{
     return result[0];
 }
 
-export {insertCourse,getAllCourses,getCourseById,getCourseByCreator,getCourseContent,updateCourse};
+const deleteCourse=async(id,userId)=>{
+    const [result]=await db.query('DELETE from courses WHERE id=? AND creator_id=?',[id,userId]);
+    return result.affectedRows;
+}
+
+export {insertCourse,getAllCourses,getCourseById,getCourseByCreator,getCourseContent,updateCourse,deleteCourse};

@@ -1,4 +1,4 @@
-import { insertCourse,getAllCourses, getCourseById,getCourseByCreator, getCourseContent, updateCourse } from "../models/courseModel.js";
+import { insertCourse,getAllCourses, getCourseById,getCourseByCreator, getCourseContent, updateCourse, deleteCourse } from "../models/courseModel.js";
 
 const createCourse=async(req,res)=>{
     try{
@@ -116,4 +116,20 @@ const editCourse=async(req,res)=>{
     }
 }
 
-export {createCourse,listCourses,getCourse,getMyCreatedCourses,getCourseContentController,editCourse};
+const removeCourse=async(req,res)=>{
+    try{
+        const courseId=req.params.id;
+        const userId=req.user.id;
+        const affectedRows=await deleteCourse(courseId,userId);
+        if(affectedRows===0){
+            return res.status(403).json({error:'Not allowed or Course not found'});
+        }
+        return res.status(200).json({message:'Course deleted successfully'});
+    }catch(err){
+        console.error(err);
+        res.status(500).json({error:'Internal server error'});
+    }
+}
+
+
+export {createCourse,listCourses,getCourse,getMyCreatedCourses,getCourseContentController,editCourse,removeCourse};
