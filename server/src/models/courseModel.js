@@ -25,4 +25,13 @@ const getCourseContent=async(courseId)=>{
     return result;
 }
 
-export {insertCourse,getAllCourses,getCourseById,getCourseByCreator,getCourseContent};
+const updateCourse=async(id,title,description,content,userId)=>{
+    const [updateResult]=await db.query('UPDATE courses SET title=?,description=?,content=? WHERE id=? AND creator_id=?',[title,description,content,id,userId]);
+    if(updateResult.affectedRows===0){
+        return null;
+    }
+    const [result]=await db.query('SELECT title,description,content FROM courses WHERE id=?',[id]);
+    return result[0];
+}
+
+export {insertCourse,getAllCourses,getCourseById,getCourseByCreator,getCourseContent,updateCourse};

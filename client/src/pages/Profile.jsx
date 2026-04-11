@@ -122,10 +122,10 @@ const Profile = () => {
     ):(
       <>
       {/*EDIT MODE */}
-      <form>
+      <form onSubmit={handleUpdate}>
         <div className='mt-4 px-4'>
           <h1 className='text-3xl font-bold'>Name:</h1>
-          <input className='text-2xl border p-2'
+          <input className='text-2xl border p-2 w-full'
           value={name}
           onChange={(e)=>setName(e.target.value)}
           />
@@ -138,7 +138,7 @@ const Profile = () => {
           />
         </div>
         <div className='flex mt-8 px-4 gap-2'>
-          <button className='bg-green-800 text-white p-2' onClick={handleUpdate}>Save Updates</button>
+          <button type='submit' className='bg-green-800 text-white p-2'>Save Updates</button>
           <button className='bg-red-800 text-white p-2' onClick={()=>setEditMode(false)}>Cancel</button>
         </div>
       </form>
