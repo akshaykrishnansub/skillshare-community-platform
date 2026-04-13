@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import authRoutes from './routes/authRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import courseRoutes from './routes/courseRoutes.js'
+import enrollmentRoutes from './routes/enrollmentRoutes.js'
 import db from './config/db.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
@@ -29,6 +30,7 @@ const port=process.env.PORT || 3000;
 app.use('/api',authRoutes);
 app.use("/api",userRoutes);
 app.use("/api/courses",courseRoutes);
+app.use('/api/enrollments',enrollmentRoutes);
 
 app.get("/",(req,res)=>{
     res.send("Server is running");

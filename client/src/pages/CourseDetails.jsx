@@ -44,6 +44,7 @@ const CourseDetails = () => {
     <div className='mt-2 p-4'>
         <h2 className='text-2xl font-bold'>Instructor:{" "}</h2><p className='text-2xl'>{courseDetail.instructor}</p>
     </div>
+    <div></div>
     </>
   )
 }
