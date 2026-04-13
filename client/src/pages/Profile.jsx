@@ -111,13 +111,7 @@ const Profile = () => {
   return (
     <>
     <title>SkillShare | My Profile</title>
-    <Navbar
-    showLogin={false}
-    showSignup={false}
-    rightSlot={
-      <button className='bg-amber-950 text-white p-2 rounded hover:bg-amber-900 cursor-pointer'onClick={logout}>Logout</button>
-    }
-    />
+    <Navbar/>
 
     <div className='mt-4 px-4'><h1 className='text-3xl font-extrabold'>Profile Information:</h1></div>
     {!editMode ?(

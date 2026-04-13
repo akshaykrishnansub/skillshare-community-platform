@@ -40,7 +40,6 @@ const AllCourses = () => {
       <>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-4 gap-1.5'>
         {courses.map((course)=>(
-          <>
           <div
           key={course.id}
           className='border p-4 rounded shadow hover:shadow-lg transition cursor-pointer'
@@ -51,7 +50,6 @@ const AllCourses = () => {
               <button className='p-2 rounded bg-purple-800 text-white' onClick={()=>{openCourse(course.id)}}>View Course Details</button>
             </div>
           </div>
-          </>
         ))}
       </div>
       </>

@@ -8,6 +8,13 @@ const enroll=async(req,res)=>{
         await enrollCourse(userId,courseId);
         return res.status(200).json({message:'Enrolled successfully'});
     }catch(err){
+        if(err.message==="CREATOR_CANNOT_ENROLL"){
+            return res.status(403).json({error:'You cannot enroll in your own course'});
+        }
+        if(err.message==="COURSE_NOT_FOUND"){
+            return res.status(404).json({error:'Course not found'});
+        }
+        
         if(err.code==="ER_DUP_ENTRY"){
             return res.status(400).json({error:'Already enrolled in this course'});
         }

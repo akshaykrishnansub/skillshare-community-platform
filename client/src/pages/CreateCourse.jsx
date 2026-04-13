@@ -41,13 +41,7 @@ const CreateCourse = () => {
   return (
     <>
     <title>SkillShare | Create a Course</title>
-    <Navbar
-    showLogin={false}
-    showSignup={false}
-    rightSlot={
-        <button className='bg-amber-950 text-white p-2 rounded hover:bg-amber-900 cursor-pointer' onClick={logout}>Logout</button>
-    }
-     />
+    <Navbar/>
      <div className='text-center mt-4 text-4xl font-bold'>
         <h1>Create your course here by entering the content below</h1>
      </div>

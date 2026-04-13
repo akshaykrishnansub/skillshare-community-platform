@@ -12,13 +12,7 @@ const Dashboard = () => {
   return (
     <>
     <title>SkillShare | Dashboard</title>
-    <Navbar 
-    showLogin={false}
-    showSignup={false}
-    rightSlot={
-      <button className='bg-amber-950 text-white p-2 rounded hover:bg-amber-900 cursor-pointer'onClick={logout}>Logout</button>
-    }
-    />
+    <Navbar />
     <div className='flex'>
       <aside className='h-screen w-64 bg-purple-950'>
         <div className='text-white pt-2 text-4xl text-center font-bold'>MENU</div>

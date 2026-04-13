@@ -65,13 +65,7 @@ const CourseContent = () => {
   return (
     <>
     <title>{courseContent.title}</title>
-    <Navbar
-    showLogin={false}
-    showSignup={false}
-    rightSlot={
-      <button className='bg-amber-950 text-white p-2 rounded hover:bg-amber-900 cursor-pointer'onClick={logout}>Logout</button>
-    }
-    />
+    <Navbar/>
     {!editMode?(
       <>
       <div className='mt-4 p-4'>

@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar.jsx'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
+import { useContext } from 'react'
+import { AuthContext } from '../context/AuthContext.jsx'
 
 const CourseDetails = () => {
+    const navigate=useNavigate();
     const {id}=useParams();
     const [courseDetail,setCourseDetail]=useState(null);
+    const {user}=useContext(AuthContext);
+    const [enrolled,setEnrolled]=useState(false);
 
     useEffect(()=>{
         const fetchCourse=async(id)=>{
@@ -21,6 +26,26 @@ const CourseDetails = () => {
         }
         fetchCourse(id);
     },[id]);
+
+    //check enrollment status
+    useEffect(()=>{
+        const checkStatus=async()=>{
+            try{
+                const res=await fetch(`http://localhost:3000/api/enrollments/${id}/enroll`,{
+                    credentials:"include"
+                })
+                const data=await res.json();
+                if(res.ok){
+                    setEnrolled(data.enrolled);
+                }
+            }catch(err){
+                console.error(err);
+            }
+        }
+        checkStatus();
+    },[id]);
+
+    const isCreator=user&&courseDetail&&Number(user.id)===Number(courseDetail.creator_id);
 
     if (!courseDetail) {
     return (
@@ -44,7 +69,38 @@ const CourseDetails = () => {
     <div className='mt-2 p-4'>
         <h2 className='text-2xl font-bold'>Instructor:{" "}</h2><p className='text-2xl'>{courseDetail.instructor}</p>
     </div>
-    <div></div>
+    <div className='mt-6 p-4'>
+        {!user?(
+            <button
+            className='p-2 bg-black text-white font-bold'
+            onClick={()=>navigate('/login')}
+            >Login to Enroll</button>
+        ):
+        isCreator?(
+            <button
+            className='p-2 bg-blue-700 font-bold text-white'
+            onClick={()=>navigate(`/courses/my-courses/${id}`)}
+            >Go to your Course</button>
+        ):enrolled?(
+            <button
+            className='p-2 bg-green-700 text-white font-bold'
+            onClick={()=>navigate(`/courses/my-courses/${id}`)}
+            >Continue Learning</button>
+        ):(
+            <button
+            className='p-2 bg-purple-800 text-white font-bold'
+            onClick={async()=>{
+                const res=await fetch(`http://localhost:3000/api/courses/${id}/enroll`,{
+                    method:"POST",
+                    credentials:"include"
+                })
+                if(res.ok){
+                    setEnrolled(true);
+                }
+            }}
+            >Enroll Now</button>
+        )}
+    </div>
     </>
   )
 }
