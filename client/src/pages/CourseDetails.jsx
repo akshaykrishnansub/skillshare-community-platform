@@ -27,11 +27,29 @@ const CourseDetails = () => {
         fetchCourse(id);
     },[id]);
 
+    const handleEnroll=async()=>{
+    try{
+      const res=await fetch(`http://localhost:3000/api/courses/${id}/enroll`,{
+        method:"POST",
+        credentials:"include"
+      });
+
+      const data=await res.json();
+      if(!res.ok){
+        console.log(data.error);
+        return;
+      }
+      setEnrolled(true);
+    }catch(err){
+      console.error(err);
+    }
+  }
+
     //check enrollment status
     useEffect(()=>{
         const checkStatus=async()=>{
             try{
-                const res=await fetch(`http://localhost:3000/api/enrollments/${id}/enroll`,{
+                const res=await fetch(`http://localhost:3000/api/courses/${id}/enroll`,{
                     credentials:"include"
                 })
                 const data=await res.json();
@@ -89,15 +107,7 @@ const CourseDetails = () => {
         ):(
             <button
             className='p-2 bg-purple-800 text-white font-bold'
-            onClick={async()=>{
-                const res=await fetch(`http://localhost:3000/api/courses/${id}/enroll`,{
-                    method:"POST",
-                    credentials:"include"
-                })
-                if(res.ok){
-                    setEnrolled(true);
-                }
-            }}
+            onClick={handleEnroll}
             >Enroll Now</button>
         )}
     </div>

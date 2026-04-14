@@ -4,8 +4,8 @@ import { AuthContext } from '../context/AuthContext.jsx'
 import { useParams } from 'react-router-dom'
 
 const CourseContent = () => {
+  const {user}=useContext(AuthContext);
   const {id}=useParams();
-  const {logout}=useContext(AuthContext);
   const [courseContent,setCourseContent]=useState(null);
   const [editMode,setEditMode]=useState(false);
   const [title,setTitle]=useState("");
@@ -28,6 +28,9 @@ const CourseContent = () => {
     }
     fetchCourseContent();
   },[id]);
+
+
+  const isCreator=user&&courseContent&&Number(user.id)===Number(courseContent.creator_id);
 
   if(!courseContent){
     return (
@@ -84,9 +87,11 @@ const CourseContent = () => {
         <h2 className='text-2xl font-bold'>Content:{" "}</h2>
         <p className='text-2xl'>{courseContent.content}</p>
       </div>
-      <div className='mt-4 p-4'>
-        <button className='bg-purple-900 p-2 text-white font-bold hover:bg-purple-800' onClick={()=>{setEditMode(true);setTitle(courseContent.title);setDescription(courseContent.description);setContent(courseContent.content)}}>Edit Content</button>
-      </div>
+      {isCreator &&(
+        <div className='mt-4 p-4'>
+          <button className='bg-purple-900 p-2 text-white font-bold hover:bg-purple-800' onClick={()=>{setEditMode(true);setTitle(courseContent.title);setDescription(courseContent.description);setContent(courseContent.content)}}>Edit Content</button>
+        </div>
+      )}
       </>
     ):(
       <>

@@ -16,12 +16,12 @@ const getCourseById=async(id)=>{
 }
 
 const getCourseByCreator=async(userId)=>{
-    const [result]=await db.query('SELECT c.id,c.title,c.description,u.name AS instructor from courses c INNER JOIN users u ON c.creator_id=u.id WHERE c.creator_id=?',[userId]);
+    const [result]=await db.query('SELECT c.id,c.title,c.description,c.creator_id,u.name AS instructor from courses c INNER JOIN users u ON c.creator_id=u.id WHERE c.creator_id=?',[userId]);
     return result;
 }
 
 const getCourseContent=async(courseId)=>{
-    const [result]=await db.query('SELECT c.id,c.title,c.description,c.content,u.name AS instructor from courses c INNER JOIN users u ON c.creator_id=u.id WHERE c.id=?',[courseId]);
+    const [result]=await db.query('SELECT c.id,c.title,c.description,c.content,c.creator_id,u.name AS instructor from courses c INNER JOIN users u ON c.creator_id=u.id WHERE c.id=?',[courseId]);
     return result;
 }
 

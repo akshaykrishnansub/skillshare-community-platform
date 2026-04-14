@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../components/Navbar.jsx'
 import { AuthContext } from '../context/AuthContext.jsx'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 const Profile = () => {
   
@@ -11,6 +11,8 @@ const Profile = () => {
   const [profile,setProfile]=useState(null);
   const [name,setName]=useState("");
   const [bio,setBio]=useState("");
+  const [enrolledCourses,setEnrolledCourses]=useState([]);
+  const {id}=useParams();
 
   const [courses,setCourses]=useState([]);
   const openMyCourse=(id)=>{
@@ -52,6 +54,24 @@ const Profile = () => {
   },[]);
 
 
+  useEffect(()=>{
+    const fetchEnrolledCourses=async()=>{
+      try{
+        const res=await fetch('http://localhost:3000/api/enrollments/my-courses',{
+          credentials:"include"
+        })
+        const data=await res.json();
+        if(res.ok){
+          setEnrolledCourses(data.courses);
+        }
+      }catch(err){
+        console.error(err);
+      }
+    }
+    fetchEnrolledCourses();
+  },[]);
+
+
   const handleUpdate=async(event)=>{
     event.preventDefault();
 
@@ -87,17 +107,36 @@ const Profile = () => {
   if(!profile)
     return <p>Loading...</p>
 
+  const handleUnenroll=async(id)=>{
+    const unenrollConfirmation=window.confirm("Are you want to Unenroll from this course??");
+    if(!unenrollConfirmation){
+      return;
+    }
+    try{
+      const res=await fetch(`http://localhost:3000/api/courses/${id}/enroll`,{
+        method:"DELETE",
+        credentials:"include"
+      });
+      if(res.ok){
+        setEnrolledCourses((prev)=>prev.filter((c)=>c.id!==id));
+      }
+    }catch(err){
+      console.error(err);      
+    }
+  }
+
   const handleCourseDeletion=async(id)=>{
     const deleteConfirmation=window.confirm("Are you sure you want to delete this course??");
     if(!deleteConfirmation){
       return;
     }
     try{
-      const res=await fetch(`http://localhost:3000/api/courses/${id}`,{
+      const res=await fetch(`http://localhost:3000/api/courses/${id}/enroll`,{
         method:"DELETE",
         credentials:"include"
       })
       const data=await res.json();
+      
       if(res.ok){
         setCourses((prev)=>prev.filter((c)=>c.id!==id));
         console.log("Course deleted successfully");
@@ -182,6 +221,27 @@ const Profile = () => {
           </div>
         )
         )}
+      </div>
+    )}
+    <div>
+      <h1 className='text-3xl text-center font-extrabold'>My Enrolled Courses</h1>
+    </div>
+    {enrolledCourses.length===0?(
+      <div className='mt-4'>
+        <p className='text-2xl text-center'>You have not enrolled to any courses yet.</p>
+      </div>
+    ):(
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-4 gap-1.5 mb-6'>
+        {enrolledCourses.map((course)=>(
+          <div key={course.id} className='border p-4 rounded shadow hover:shadow-lg transition'>
+            <h3 className='text-3xl font-semibold'>Course Name:{" "}</h3><p className='text-2xl'>{course.title}</p>
+            <h3 className='text-3xl font-semibold'>Instructor:{" "}</h3><p className='text-2xl'>{course.instructor}</p>
+            <div className='mt-4 flex gap-2 justify-center'>
+              <button className='p-2 text-white bg-green-700 rounded hover:bg-green-600' onClick={()=>navigate(`/courses/my-courses/${course.id}`)}>Continue Learning</button>
+              <button className='p-2 text-white bg-red-700 rounded hover:bg-red-600' onClick={()=>handleUnenroll(course.id)}>Leave Course</button>
+            </div>
+          </div>
+        ))}
       </div>
     )}
     </>

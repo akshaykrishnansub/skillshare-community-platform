@@ -29,7 +29,7 @@ const checkEnrollment=async(userId,courseId)=>{
 }
 
 const getEnrolledCourses=async(userId)=>{
-    const [result]=await db.query('SELECT c.id,c.title,c.description,c.content FROM enrollments e INNER JOIN courses c ON e.course_id=c.id WHERE e.user_id=?',[userId]);
+    const [result]=await db.query('SELECT c.id,c.title,c.description,c.content,u.name AS instructor FROM enrollments e INNER JOIN courses c ON e.course_id=c.id INNER JOIN users u ON c.creator_id = u.id WHERE e.user_id=?',[userId]);
     return result;
 
 }

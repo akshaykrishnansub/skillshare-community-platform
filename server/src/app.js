@@ -32,6 +32,7 @@ app.use("/api",userRoutes);
 app.use("/api/courses",courseRoutes);
 app.use('/api/enrollments',enrollmentRoutes);
 
+
 app.get("/",(req,res)=>{
     res.send("Server is running");
 })
