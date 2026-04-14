@@ -11,6 +11,7 @@ const CourseDetails = () => {
     const [courseDetail,setCourseDetail]=useState(null);
     const {user}=useContext(AuthContext);
     const [enrolled,setEnrolled]=useState(false);
+    const [toast,setToast]=useState(null);
 
     useEffect(()=>{
         const fetchCourse=async(id)=>{
@@ -39,11 +40,20 @@ const CourseDetails = () => {
         console.log(data.error);
         return;
       }
+      showToast("Enrollment successful","success");
       setEnrolled(true);
     }catch(err){
       console.error(err);
+      showToast("Server error, Please Try again","error");
     }
   }
+
+  const showToast=(message,type="success")=>{
+        setToast({message,type});
+        setTimeout(()=>{
+            setToast(null)
+        },2500);
+    }
 
     //check enrollment status
     useEffect(()=>{
@@ -77,6 +87,13 @@ const CourseDetails = () => {
   return (
     <>
     <Navbar />
+    {toast &&(
+        <div className={`fixed top-5 right-5 px-4 py-2 rounded text-white shadow-lg z-50 animate-slide-in ${
+            toast.type==="success"?"bg-green-500":"bg-red-500"
+        }`}>
+            {toast.message}
+        </div>
+    )}
     <title>{courseDetail.title}</title>
     <div className='mt-4 p-4'>
         <h2 className='text-2xl font-bold'>Title:{" "}</h2><p className='text-2xl'>{courseDetail.title}</p>

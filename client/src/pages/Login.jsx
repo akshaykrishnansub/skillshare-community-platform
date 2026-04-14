@@ -25,10 +25,10 @@ const Login = () => {
     event.preventDefault();
     const success=await login(formData.email,formData.password);
     if(success){
-      console.log("Login successful");
+      showToast("Login successful","success");
       navigate("/dashboard")
     }else{
-      console.log("Login failed");
+      showToast("Login failed","error");
     }
   }
 

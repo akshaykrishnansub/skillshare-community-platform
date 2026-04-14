@@ -12,6 +12,7 @@ const Profile = () => {
   const [name,setName]=useState("");
   const [bio,setBio]=useState("");
   const [enrolledCourses,setEnrolledCourses]=useState([]);
+  const [toast,setToast]=useState(null);
   const {id}=useParams();
 
   const [courses,setCourses]=useState([]);
@@ -71,6 +72,13 @@ const Profile = () => {
     fetchEnrolledCourses();
   },[]);
 
+  const showToast=(message,type="success")=>{
+        setToast({message,type});
+        setTimeout(()=>{
+            setToast(null)
+        },2500);
+    }
+
 
   const handleUpdate=async(event)=>{
     event.preventDefault();
@@ -96,11 +104,12 @@ const Profile = () => {
         name:data.user.name,
         bio:data.user.bio
       }))
-
+      showToast("Profile changes saved successfully","success");
       setEditMode(false);
 
     }catch(err){
       console.error(err.message);
+      showToast("Server error, Please try again","error");
     }
   }
 
@@ -119,9 +128,11 @@ const Profile = () => {
       });
       if(res.ok){
         setEnrolledCourses((prev)=>prev.filter((c)=>c.id!==id));
+        showToast("Unenrolled from course successfully","success");
       }
     }catch(err){
-      console.error(err);      
+      console.error(err);
+      showToast("Server error, Please try again","error");
     }
   }
 
@@ -151,7 +162,13 @@ const Profile = () => {
     <>
     <title>SkillShare | My Profile</title>
     <Navbar/>
-
+    {toast &&(
+        <div className={`fixed top-5 right-5 px-4 py-2 rounded text-white shadow-lg z-50 animate-slide-in ${
+            toast.type==="success"?"bg-green-500":"bg-red-500"
+        }`}>
+            {toast.message}
+        </div>
+    )}
     <div className='mt-4 px-4'><h1 className='text-3xl font-extrabold'>Profile Information:</h1></div>
     {!editMode ?(
       <>

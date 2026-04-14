@@ -11,6 +11,7 @@ const CourseContent = () => {
   const [title,setTitle]=useState("");
   const [description,setDescription]=useState("");
   const [content,setContent]=useState("");
+  const [toast,setToast]=useState(null);
 
   useEffect(()=>{
     const fetchCourseContent=async()=>{
@@ -41,6 +42,13 @@ const CourseContent = () => {
     )
   }
 
+  const showToast=(message,type="success")=>{
+        setToast({message,type});
+        setTimeout(()=>{
+            setToast(null)
+        },2500);
+    }
+
   const handleContentUpdate=async(event)=>{
     event.preventDefault();
 
@@ -56,12 +64,18 @@ const CourseContent = () => {
         console.error(data.error);
         return;
       }
-
-      setCourseContent(data.courseContent);
+      showToast("Changes saved successfully","success");
+      setCourseContent((prev)=>({
+        ...prev,
+        title,
+        description,
+        content
+      }));
       setEditMode(false);
 
     }catch(err){
-      console.error(err); 
+      console.error(err);
+      showToast("Server Error, Please try again","error")
     }
   }
 
@@ -69,6 +83,13 @@ const CourseContent = () => {
     <>
     <title>{courseContent.title}</title>
     <Navbar/>
+    {toast &&(
+        <div className={`fixed top-5 right-5 px-4 py-2 rounded text-white shadow-lg z-50 animate-slide-in ${
+            toast.type==="success"?"bg-green-500":"bg-red-500"
+        }`}>
+            {toast.message}
+        </div>
+    )}
     {!editMode?(
       <>
       <div className='mt-4 p-4'>
@@ -89,7 +110,7 @@ const CourseContent = () => {
       </div>
       {isCreator &&(
         <div className='mt-4 p-4'>
-          <button className='bg-purple-900 p-2 text-white font-bold hover:bg-purple-800' onClick={()=>{setEditMode(true);setTitle(courseContent.title);setDescription(courseContent.description);setContent(courseContent.content)}}>Edit Content</button>
+          <button type='button' className='bg-purple-900 p-2 text-white font-bold hover:bg-purple-800' onClick={()=>{setEditMode(true);setTitle(courseContent.title);setDescription(courseContent.description);setContent(courseContent.content)}}>Edit Content</button>
         </div>
       )}
       </>
