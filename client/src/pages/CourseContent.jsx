@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../components/Navbar.jsx'
 import { AuthContext } from '../context/AuthContext.jsx'
 import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const CourseContent = () => {
   const {user}=useContext(AuthContext);
@@ -107,6 +108,9 @@ const CourseContent = () => {
       <div className='mt-2 p-4'>
         <h2 className='text-2xl font-bold'>Content:{" "}</h2>
         <p className='text-2xl'>{courseContent.content}</p>
+      </div>
+      <div className='mt-2 p-4'>
+        <Link to='/dashboard'>Go to Dashboard</Link>
       </div>
       {isCreator &&(
         <div className='mt-4 p-4'>

@@ -37,7 +37,7 @@ const CourseDetails = () => {
 
       const data=await res.json();
       if(!res.ok){
-        console.log(data.error);
+        showToast("You cannot enroll in your own course","error");
         return;
       }
       showToast("Enrollment successful","success");

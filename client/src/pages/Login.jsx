@@ -8,6 +8,7 @@ const Login = () => {
   const {login}=useContext(AuthContext);
   const navigate=useNavigate();
 
+
   const [formData,setFormData]=useState({
     email:"",
     password:""
@@ -25,10 +26,10 @@ const Login = () => {
     event.preventDefault();
     const success=await login(formData.email,formData.password);
     if(success){
-      showToast("Login successful","success");
+      console.log("Login successful");
       navigate("/dashboard")
     }else{
-      showToast("Login failed","error");
+      console.error("Login failed","error");
     }
   }
 

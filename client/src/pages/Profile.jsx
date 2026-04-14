@@ -27,11 +27,11 @@ const Profile = () => {
       })
       const data=await res.json();
       console.log(res.status,data);
-      setProfile(data);
+      setProfile(data.user);
 
       //Prefill the fields to edit
-      setName(data.name);
-      setBio(data.bio || "");
+      setName(data.user.name);
+      setBio(data.user.bio || "");
     }
     fetchProfile();
   },[]);

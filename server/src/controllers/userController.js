@@ -3,7 +3,7 @@ import { getUserById,updateUserProfile} from "../models/userModel.js";
 const getProfile=async(req,res)=>{
     try{
         const user=await getUserById(req.user.id);
-        res.json(user);
+        res.json({user:{id:user.id,name:user.name,email:user.email,bio:user.bio}});
     }catch(err){
         console.error(err);
         res.status(500).json({error:'Internal server error'});

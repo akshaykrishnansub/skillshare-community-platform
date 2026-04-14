@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { login, registerUser,logout } from "../controllers/authController.js"
 import verifyToken from "../middleware/authMiddleware.js";
+import { getProfile } from "../controllers/userController.js";
 
 const router=Router();
 
@@ -9,8 +10,6 @@ router.post("/login",login)
 router.post("/logout",logout)
 
 //protected route
-router.get("/me",verifyToken,(req,res)=>{
-    res.json({user:req.user});
-})
+router.get("/me",verifyToken,getProfile)
 
 export default router;
