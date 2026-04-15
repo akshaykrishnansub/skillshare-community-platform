@@ -1,4 +1,4 @@
-import { insertCourse,getAllCourses, getCourseById,getCourseByCreator, getCourseContent, updateCourse, deleteCourse } from "../models/courseModel.js";
+import { insertCourse,getAllCourses, getCourseById,getCourseByCreator, getCourseContent, updateCourse, deleteCourse,searchCourses } from "../models/courseModel.js";
 
 const createCourse=async(req,res)=>{
     try{
@@ -131,5 +131,19 @@ const removeCourse=async(req,res)=>{
     }
 }
 
+const searchCoursesController=async(req,res)=>{
+    try{
+        const {q}=req.query;
+        if(!q || q.trim()===""){
+            return res.status(400).json({error:'Search query required'});
+        }
+        const courses=await searchCourses(q);
+        res.json({courses});
+    }catch(err){
+        console.error(err);
+        res.status(500).json({error:'Internal Server Error'});
+    }
+}
 
-export {createCourse,listCourses,getCourse,getMyCreatedCourses,getCourseContentController,editCourse,removeCourse};
+
+export {createCourse,listCourses,getCourse,getMyCreatedCourses,getCourseContentController,editCourse,removeCourse,searchCoursesController};

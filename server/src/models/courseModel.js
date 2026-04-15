@@ -39,4 +39,11 @@ const deleteCourse=async(id,userId)=>{
     return result.affectedRows;
 }
 
-export {insertCourse,getAllCourses,getCourseById,getCourseByCreator,getCourseContent,updateCourse,deleteCourse};
+const searchCourses=async(query)=>{
+    const [result]=await db.query(`SELECT c.id,c.title,c.description,u.name AS instructor
+        FROM courses c INNER JOIN users u ON c.creator_id=u.id WHERE c.title LIKE ? OR c.description LIKE ?
+        OR u.name LIKE ?`,[`%${query}%`,`%${query}%`,`%${query}%`]);
+    return result;
+}
+
+export {insertCourse,getAllCourses,getCourseById,getCourseByCreator,getCourseContent,updateCourse,deleteCourse,searchCourses};

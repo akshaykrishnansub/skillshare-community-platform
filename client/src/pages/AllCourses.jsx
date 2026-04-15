@@ -6,10 +6,37 @@ import { useNavigate } from 'react-router-dom'
 const AllCourses = () => {
   const navigate=useNavigate();
   const [courses,setCourses]=useState([]);
+  const [query,setQuery]=useState("");
 
   const openCourse=(id)=>{
     navigate(`/courses/${id}`);
   }
+
+  useEffect(()=>{
+    const delay=setTimeout(async()=>{
+      try{
+        if(query.trim()===""){
+          //fetch all courses again
+          const res=await fetch("http://localhost:3000/api/courses");
+          const data=await res.json();
+          if(res.ok){
+            setCourses(data.courses);
+          }
+          return;
+        }
+        const res=await fetch(`http://localhost:3000/api/courses/search?q=${query}`);
+        const data=await res.json();
+        if(res.ok){
+          setCourses(data.courses);
+        }
+      }catch(err){
+        console.error(err);
+      }
+    },400);
+    return ()=>clearTimeout(delay);
+  },[query]);
+
+
 
   useEffect(()=>{
     const fetchCourses=async()=>{
@@ -33,6 +60,14 @@ const AllCourses = () => {
     <Navbar />
     <div className='mt-4'>
       <h1 className='text-center font-extrabold text-3xl'>Here is a list of all courses</h1>
+    </div>
+    <div className='p-4 flex justify-center'>
+      <input type="text"
+      placeholder='Search Queries...'
+      value={query}
+      onChange={(e)=>setQuery(e.target.value)}
+      className='p-2 border rounded w-96'
+      />
     </div>
     {courses.length===0?(
       <h1 className='text-2xl text-center font-bold mt-4 '>No courses to display</h1>
