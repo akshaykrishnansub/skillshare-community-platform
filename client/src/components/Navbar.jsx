@@ -12,7 +12,12 @@ const Navbar = ({rightSlot,leftSlot,title='SkillShare'}) => {
 
   return (
     <nav className='bg-amber-300 flex p-4 justify-between items-center '>
-      <h1 className='font-bold text-2xl'><Link to='/'>{title}</Link></h1>
+      <div className='flex items-center gap-4'>
+        <h1 className='font-bold text-2xl'>
+          <Link to='/'>{title}</Link>
+        </h1>
+        {leftSlot}
+      </div>
       <div className='flex items-center gap-7'>
         {!user?(
           <>
