@@ -11,7 +11,7 @@ const Navbar = ({rightSlot,leftSlot,title='SkillShare'}) => {
   console.log("USER OBJECT:", user);
 
   return (
-    <nav className='bg-amber-300 flex p-4 justify-between items-center '>
+    <nav className='bg-amber-300 flex p-4 justify-between items-center w-full '>
       <div className='flex items-center gap-4'>
         <h1 className='font-bold text-2xl'>
           <Link to='/'>{title}</Link>

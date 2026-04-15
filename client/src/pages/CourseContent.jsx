@@ -32,9 +32,14 @@ const CourseContent = () => {
   },[id]);
 
 
-  const isCreator=user&&courseContent&&Number(user.id)===Number(courseContent.creator_id);
+  const isCreator=user?.id!=null &&courseContent?.creator_id!=null && String(user.id)===String(courseContent.creator_id);
 
-  if(!courseContent){
+  console.log("USER:", user);
+  console.log("USER ID:", user?.id);
+  console.log("CREATOR ID:", courseContent?.creator_id);
+  console.log("isCreator:", isCreator);
+
+  if(!courseContent || !user){
     return (
       <>
       <Navbar />
@@ -105,7 +110,7 @@ const CourseContent = () => {
         <h2 className='text-2xl font-bold'>Instructor:{" "}</h2>
         <p className='text-2xl'>{courseContent.instructor}</p>
       </div>
-      <div className='mt-2 p-4'>
+      <div className='mt-2 p-4 whitespace-pre-line wrap-normal'>
         <h2 className='text-2xl font-bold'>Content:{" "}</h2>
         <p className='text-2xl'>{courseContent.content}</p>
       </div>

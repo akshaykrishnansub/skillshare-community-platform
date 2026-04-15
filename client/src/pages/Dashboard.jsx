@@ -27,13 +27,20 @@ const Dashboard = () => {
       {sidebarOpen && (
         <div className="fixed inset-0 bg-black/50 lg:hidden" onClick={() => setSidebarOpen(false)}/>
         )}
-      <aside className={`fixed justify-center px-2 left-0 h-screen w-64 bg-purple-950 lg:h-[calc(100vh-4rem)] transform transition-transform duration-300 ${sidebarOpen?"translate-x-0":"-translate-x-full"} lg:translate-x-0`}>
+      <aside className={`fixed w-64 justify-center px-2 left-0 h-screen bg-purple-950 lg:h-[calc(100vh-64px)] transform transition-transform duration-300 ${sidebarOpen?"translate-x-0":"-translate-x-full"} lg:translate-x-0`}>
         <button className="lg:hidden text-white text-right w-full cursor-pointer" onClick={() => setSidebarOpen(false)}>✖</button>
         <div className='text-white pt-2 text-4xl text-center font-bold'>MENU</div>
         <div className='text-white mt-4 text-2xl text-center font-semibold hover:text-amber-400'><Link to="/profile">My Profile</Link></div>
         <div className='text-white mt-4 text-2xl text-center font-semibold hover:text-amber-400'><Link to="/all-courses">Go to All Courses</Link></div>
       </aside>
       <main className='flex-1'>
+        <div className='text-center mt-4'><h1 className='text-3xl font-bold'>Some Stats:</h1></div>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-72'>
+          <div>Hello</div>
+          <div>Hello</div>
+          <div>Hello</div>
+        </div>
+
         <div className='flex items-center justify-center'>
           <button className='p-2 text-white bg-blue-950 hover:bg-blue-800 mt-4 cursor-pointer' onClick={()=>navigate("/create-course")}>+ Create a Course</button>
         </div>
