@@ -5,6 +5,7 @@ import authRoutes from './routes/authRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import courseRoutes from './routes/courseRoutes.js'
 import enrollmentRoutes from './routes/enrollmentRoutes.js'
+import dashboardRoutes from './routes/dashboardRoutes.js'
 import db from './config/db.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
@@ -31,6 +32,7 @@ app.use('/api',authRoutes);
 app.use("/api",userRoutes);
 app.use("/api/courses",courseRoutes);
 app.use('/api/enrollments',enrollmentRoutes);
+app.use('/api/dashboard',dashboardRoutes);
 
 
 app.get("/",(req,res)=>{
