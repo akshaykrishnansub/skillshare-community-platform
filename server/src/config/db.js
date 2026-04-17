@@ -10,5 +10,9 @@ const db=mysql.createPool({
 })
 
 console.log(process.env.MYSQLHOST)
+console.log("DB CONFIG:", {
+  host: process.env.MYSQLHOST,
+  port: process.env.MYSQLPORT
+});
 console.log("MySQL connected");
 export default db;
