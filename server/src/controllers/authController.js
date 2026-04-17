@@ -42,7 +42,8 @@ const login=async(req,res)=>{
         //store token as a cookie
         res.cookie('token',token,{
             httpOnly:true,
-            secure:false,
+            secure:true,
+            sameSite:"none",
             maxAge:1*24*60*60*1000
         })
         return res.json({message:'Login Successful',token,user:{id:user.id,name:user.name,email:user.email,bio:user.bio}});
