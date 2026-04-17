@@ -10,7 +10,7 @@ const AuthProvider=({children})=>{
     useEffect(()=>{
         const checkUser=async()=>{
             try{
-                const res=await fetch('http://localhost:3000/api/me',{
+                const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/me`,{
                   credentials:"include"  
                 })
                 if(res.ok){
@@ -30,7 +30,7 @@ const AuthProvider=({children})=>{
 
     const login=async(email,password)=>{
         try{
-            const res=await fetch("http://localhost:3000/api/login",{
+            const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/login`,{
                 method:"POST",
                 headers:{'Content-Type':'application/json'},
                 credentials:"include",
@@ -51,7 +51,7 @@ const AuthProvider=({children})=>{
 
     const logout=async()=>{
         try{
-            await fetch('http://localhost:3000/api/logout',{
+            await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/logout`,{
             method:"POST",
             credentials:"include"
         })

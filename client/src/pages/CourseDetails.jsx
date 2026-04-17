@@ -16,7 +16,7 @@ const CourseDetails = () => {
     useEffect(()=>{
         const fetchCourse=async(id)=>{
             try{
-                const res=await fetch(`http://localhost:3000/api/courses/${id}`);
+                const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses/${id}`);
                 const data=await res.json();
                 if(res.ok){
                     setCourseDetail(data);
@@ -30,7 +30,7 @@ const CourseDetails = () => {
 
     const handleEnroll=async()=>{
     try{
-      const res=await fetch(`http://localhost:3000/api/courses/${id}/enroll`,{
+      const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses/${id}/enroll`,{
         method:"POST",
         credentials:"include"
       });
@@ -59,7 +59,7 @@ const CourseDetails = () => {
     useEffect(()=>{
         const checkStatus=async()=>{
             try{
-                const res=await fetch(`http://localhost:3000/api/courses/${id}/enroll`,{
+                const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses/${id}/enroll`,{
                     credentials:"include"
                 })
                 const data=await res.json();

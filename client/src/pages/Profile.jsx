@@ -22,7 +22,7 @@ const Profile = () => {
 
   useEffect(()=>{
     const fetchProfile=async()=>{
-      const res=await fetch("http://localhost:3000/api/profile",{
+      const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/profile`,{
         credentials:"include"
       })
       const data=await res.json();
@@ -39,7 +39,7 @@ const Profile = () => {
   useEffect(()=>{
     const fetchMyCourses=async()=>{
       try{
-        const res=await fetch("http://localhost:3000/api/courses/my-courses",{
+        const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses/my-courses`,{
           credentials:'include'
         })
         const data=await res.json();
@@ -58,7 +58,7 @@ const Profile = () => {
   useEffect(()=>{
     const fetchEnrolledCourses=async()=>{
       try{
-        const res=await fetch('http://localhost:3000/api/enrollments/my-courses',{
+        const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/enrollments/my-courses`,{
           credentials:"include"
         })
         const data=await res.json();
@@ -84,7 +84,7 @@ const Profile = () => {
     event.preventDefault();
 
     try{
-      const res=await fetch("http://localhost:3000/api/profile",{
+      const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/profile`,{
         method:"PUT",
         headers:{'Content-Type':'application/json'},
         credentials:"include",
@@ -122,7 +122,7 @@ const Profile = () => {
       return;
     }
     try{
-      const res=await fetch(`http://localhost:3000/api/courses/${id}/enroll`,{
+      const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses/${id}/enroll`,{
         method:"DELETE",
         credentials:"include"
       });
@@ -142,7 +142,7 @@ const Profile = () => {
       return;
     }
     try{
-      const res=await fetch(`http://localhost:3000/api/courses/${id}/enroll`,{
+      const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses/${id}/enroll`,{
         method:"DELETE",
         credentials:"include"
       })

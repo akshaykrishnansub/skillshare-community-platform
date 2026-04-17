@@ -17,14 +17,14 @@ const AllCourses = () => {
       try{
         if(query.trim()===""){
           //fetch all courses again
-          const res=await fetch("http://localhost:3000/api/courses");
+          const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses`);
           const data=await res.json();
           if(res.ok){
             setCourses(data.courses);
           }
           return;
         }
-        const res=await fetch(`http://localhost:3000/api/courses/search?q=${query}`);
+        const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses/search?q=${query}`);
         const data=await res.json();
         if(res.ok){
           setCourses(data.courses);
@@ -41,7 +41,7 @@ const AllCourses = () => {
   useEffect(()=>{
     const fetchCourses=async()=>{
       try{
-        const res=await fetch("http://localhost:3000/api/courses");
+        const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses`);
         const data=await res.json();
         if(res.ok){
           setCourses(data.courses);

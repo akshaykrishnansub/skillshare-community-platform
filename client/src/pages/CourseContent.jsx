@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../components/Navbar.jsx'
 import { AuthContext } from '../context/AuthContext.jsx'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 const CourseContent = () => {
+  const navigate=useNavigate();
   const {user}=useContext(AuthContext);
   const {id}=useParams();
   const [courseContent,setCourseContent]=useState(null);
@@ -17,7 +18,7 @@ const CourseContent = () => {
   useEffect(()=>{
     const fetchCourseContent=async()=>{
       try{
-        const res=await fetch(`http://localhost:3000/api/courses/my-courses/${id}`,{
+        const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses/my-courses/${id}`,{
           credentials:"include"
         })
         const data=await res.json();
@@ -59,7 +60,7 @@ const CourseContent = () => {
     event.preventDefault();
 
     try{
-      const res=await fetch(`http://localhost:3000/api/courses/${id}`,{
+      const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses/${id}`,{
         method:"PUT",
         headers:{'Content-Type':'application/json'},
         credentials:"include",
@@ -114,8 +115,8 @@ const CourseContent = () => {
         <h2 className='text-2xl font-bold'>Content:{" "}</h2>
         <p className='text-2xl'>{courseContent.content}</p>
       </div>
-      <div className='mt-2 p-4'>
-        <Link to='/dashboard'>Go to Dashboard</Link>
+      <div className='mt-2 p-4 bg-black text-white w-48 ml-4'>
+        <button onClick={()=>navigate('/dashboard')}>Go to Dashboard</button>
       </div>
       {isCreator &&(
         <div className='mt-4 p-4'>

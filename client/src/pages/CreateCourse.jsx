@@ -31,7 +31,7 @@ const CreateCourse = () => {
     const handleSubmit=async(event)=>{
         event.preventDefault();
         try{
-            const res=await fetch("http://localhost:3000/api/courses",{
+            const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses`,{
                 method:"POST",
                 headers:{'Content-Type':'application/json'},
                 credentials:"include",

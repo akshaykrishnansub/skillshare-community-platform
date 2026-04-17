@@ -11,6 +11,8 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser';
 const app=express();
 
+
+
 //recreate __dirname in ES modules
 const __filename=fileURLToPath(import.meta.url);
 const __dirname=path.dirname(__filename);
@@ -39,15 +41,17 @@ app.get("/",(req,res)=>{
     res.send("Server is running");
 })
 
-app.get("/test-db",(req,res)=>{
-    db.query('SELECT 1',(err,result)=>{
-        if(err){
-            return res.status(500).json({error:err.message})
-        }else{
-            res.json({message:'DB connected successfully'})
-        }
-    })
-})
+app.get("/test-db", async (req, res) => {
+  try {
+    const [rows] = await db.query("SELECT 1 AS result");
+    res.json({
+      message: "DB connected successfully",
+      result: rows
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.get(/.*/,(req,res)=>{
     res.sendFile(path.join(__dirname,"../../client/dist/index.html"))
