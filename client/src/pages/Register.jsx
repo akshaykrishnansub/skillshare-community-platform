@@ -41,6 +41,7 @@ const Register = () => {
         setError(data.error || 'Registration Failed');
         return;
       }
+      console.log(import.meta.env.VITE_API_BASE_URL);
       setSuccessMessage("User registered successfully 🏆");
       setFormData({name:"",email:"",password:"",bio:""});
       setError("");
