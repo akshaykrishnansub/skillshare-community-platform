@@ -19,7 +19,6 @@ const __dirname=path.dirname(__filename);
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use(express.static(path.join(__dirname,'../../client/dist')));
 
 app.use(cors({
     origin:"http://localhost:5173",
@@ -53,9 +52,6 @@ app.get("/test-db", async (req, res) => {
   }
 });
 
-app.get(/.*/,(req,res)=>{
-    res.sendFile(path.join(__dirname,"../../client/dist/index.html"))
-})
 
 app.listen(port,()=>{
     console.log(`Server running at port ${port}`)
