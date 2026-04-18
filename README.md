@@ -110,3 +110,16 @@ cd skillshare <br>
 ## 2️⃣ Backend Setup
 cd server<br>
 npm install<br>
+
+Create .env:<br>
+
+PORT=any_port<br>
+DB_HOST=your_host<br>
+DB_USER=your_user<br>
+DB_PASSWORD=your_password<br>
+DB_NAME=your_database<br>
+JWT_SECRET=your_secret<br>
+
+Run:<br>
+
+npm run dev<br>
