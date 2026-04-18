@@ -11,3 +11,14 @@ Protected routes with middleware<br>
 Create, edit, and delete courses (creator-only access) <br>
 View structured course content <br>
 Clean text formatting with paragraph support<br>
+
+## 🎓 Enrollment System
+Enroll in courses <br>
+Unenroll from courses <br>
+Personalized enrolled courses view<br>
+
+## 📊 Dashboard
+View key stats: <br>
+Total courses created<br>
+Total enrolled courses<br>
+Quick navigation for course management and Profile management<br>
