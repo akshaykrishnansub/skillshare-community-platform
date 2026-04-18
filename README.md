@@ -74,3 +74,13 @@ COPY . .<br>
 EXPOSE 3000<br>
 
 CMD ["npm", "start"]<br>
+
+# 📂 Project Structure (MVC)
+
+server/<br>
+│<br>
+├── controllers/<br>
+├── models/<br>
+├── routes/<br>
+├── middleware/<br>
+└── server.js<br>
