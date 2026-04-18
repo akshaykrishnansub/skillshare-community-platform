@@ -3,3 +3,6 @@ SkillShare is an open-source platform enabling users to create, share, and enrol
 
 # 🌟 Features
 ## 👤 Authentication & Authorization
+Secure user registration & login
+JWT-based authentication using HTTP-only cookies
+Protected routes with middleware
