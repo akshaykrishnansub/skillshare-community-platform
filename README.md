@@ -26,3 +26,28 @@ Quick navigation for course management and Profile management<br>
 ## 👨‍💻 Profile Management
 View and update profile <br>
 Track created and enrolled courses <br>
+
+# 🛠️ Tech Stack
+
+## Frontend
+React.js<br>
+Tailwind CSS<br>
+React Router<br>
+
+## Backend
+Node.js<br>
+Express.js<br>
+MVC Architecture<br>
+
+## Database
+MySQL
+
+## DevOps / Deployment
+Docker (Backend containerization)<br>
+Vercel (Frontend)<br>
+Railway (Backend hosting)<br>
+
+## Authentication & Security
+JWT (JSON Web Tokens)<br>
+bcrypt (Password hashing)<br>
+HTTP-only cookies<br>
