@@ -142,7 +142,7 @@ const Profile = () => {
       return;
     }
     try{
-      const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses/${id}/enroll`,{
+      const res=await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/courses/${id}`,{
         method:"DELETE",
         credentials:"include"
       })
