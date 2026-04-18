@@ -144,6 +144,13 @@ npm run dev<br>
 
 <img width="957" height="921" alt="Screenshot (224)" src="https://github.com/user-attachments/assets/236592eb-1a2f-4068-ad7d-62784513152d" />
 
+# 🚀 Future Improvements
+Course ratings & reviews<br>
+AI-based recommendations<br>
+Rich text editor<br>
+Payment processing<br>
+Messaging Forums<br>
+
 
 
 
