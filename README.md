@@ -83,4 +83,30 @@ server/<br>
 ├── models/<br>
 ├── routes/<br>
 ├── middleware/<br>
-└── server.js<br>
+└── app.js<br>
+
+# 🔌 API Endpoints (Sample)
+## Auth
+POST /api/register<br>
+POST /api/login<br>
+POST /api/logout<br>
+GET /api/me<br>
+
+## Courses
+GET /api/courses<br>
+POST /api/courses<br>
+PUT /api/courses/:id<br>
+DELETE /api/courses/:id<br>
+
+## Enrollment
+POST /api/courses/:id/enroll<br>
+DELETE /api/courses/:id/enroll<br>
+
+# ⚙️ Setup Instructions
+## 1️⃣ Clone the repository
+git clone https://github.com/your-username/skillshare.git <br>
+cd skillshare <br>
+
+## 2️⃣ Backend Setup
+cd server<br>
+npm install<br>
