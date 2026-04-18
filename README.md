@@ -159,7 +159,19 @@ This project is open-source and contributions are welcome.
 
 MIT License
 
+# 🛠️ Contributing
+Fork the repo
+Create a branch
+Make changes
+Submit a PR
 
+See CONTRIBUTING.md for details.
 
+# 🐞 Issues
 
+Use GitHub Issues to report bugs or suggest features.
+
+# 👨‍💻 Author
+
+Akshay Krishnan
 
