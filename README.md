@@ -151,7 +151,13 @@ Rich text editor<br>
 Payment processing<br>
 Messaging Forums<br>
 
+# 🤝 Open Source & Contribution
 
+This project is open-source and contributions are welcome.
+
+# 📜 License
+
+MIT License
 
 
 
