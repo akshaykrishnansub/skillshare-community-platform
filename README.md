@@ -123,3 +123,12 @@ JWT_SECRET=your_secret<br>
 Run:<br>
 
 npm run dev<br>
+
+## 3️⃣ Frontend Setup
+cd client<br>
+npm install<br>
+npm run dev<br>
+
+# 📸 Screenshots
+<img width="1920" height="1035" alt="Screenshot (218)" src="https://github.com/user-attachments/assets/74038eb5-2335-4014-b094-ecd9e11f04c2" />
+
