@@ -24,5 +24,5 @@ Total enrolled courses<br>
 Quick navigation for course management and Profile management<br>
 
 ## 👨‍💻 Profile Management
-View and update profile
-Track created and enrolled courses
+View and update profile <br>
+Track created and enrolled courses <br>
