@@ -3,10 +3,7 @@ import { getMyEnrolledCourses, getTotalCourses, getTotalEnrollments, getTotalStu
 const getDashboardStats=async(req,res)=>{
     try{
         const userId=req.user.id;
-        const totalCourses=await getTotalCourses(userId);
-        const totalEnrollments=await getTotalEnrollments(userId);
-        const totalStudents=await getTotalStudents(userId);
-        const myEnrolledCourses=await getMyEnrolledCourses(userId);
+        const [totalCourses,totalEnrollments,totalStudents,myEnrolledCourses]=await Promise.all([getTotalCourses(userId),getTotalEnrollments(userId),getTotalStudents(userId),getMyEnrolledCourses(userId)]);
         res.json({totalCourses:Number(totalCourses),totalEnrollments:Number(totalEnrollments),totalStudents:Number(totalStudents),myEnrolledCourses:Number(myEnrolledCourses)});
     }catch(err){
         console.error(err);
