@@ -22,3 +22,7 @@ View key stats: <br>
 Total courses created<br>
 Total enrolled courses<br>
 Quick navigation for course management and Profile management<br>
+
+## 👨‍💻 Profile Management
+View and update profile
+Track created and enrolled courses
