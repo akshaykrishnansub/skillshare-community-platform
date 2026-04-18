@@ -41,6 +41,7 @@ const login=async(req,res)=>{
 
         //store token as a cookie
         res.cookie('token',token,{
+            path:"/",
             httpOnly:true,
             secure:true,
             sameSite:"none",
@@ -57,7 +58,8 @@ const logout=(req,res)=>{
         res.clearCookie('token',{
             path:"/",
             httpOnly:true,
-            secure:false
+            secure:true,
+            sameSite:"none"
         })
         res.json({message:'Logged out successfully'});
     }catch(err){
